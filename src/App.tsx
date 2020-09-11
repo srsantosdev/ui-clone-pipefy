@@ -1,7 +1,17 @@
 import React from 'react';
+import Board from './components/Board';
+import Header from './components/Header';
+import GlobalStyle from './styles/GlobalStyle';
 
 const App: React.FC = () => {
-  return <h1>Hello World</h1>;
+  return (
+    <>
+      <Header />
+      <Board />
+
+      <GlobalStyle />
+    </>
+  );
 };
 
 export default App;
