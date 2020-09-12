@@ -1,4 +1,18 @@
-export function loadLists(): object[] {
+export interface TypeCard {
+  id: number | string;
+  content: string;
+  labels: string[];
+  user?: string;
+}
+
+export interface TypeList {
+  title: string;
+  creatable: boolean;
+  cards: TypeCard[];
+  done?: boolean;
+}
+
+export function loadLists(): TypeList[] {
   return [
     {
       title: 'Tarefas',

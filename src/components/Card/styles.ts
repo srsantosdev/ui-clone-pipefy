@@ -1,10 +1,14 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface LabelProps {
   color: string;
 }
 
-export const Container = styled.div`
+interface ContainerProps {
+  isDragging: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
   position: relative;
   background: #fff;
   border-radius: 5px;
@@ -14,7 +18,7 @@ export const Container = styled.div`
   box-shadow: 0 1px 4px 0 rgba(192, 208, 230, 0.8);
   border-top: 20px solid rgba(230, 236, 245, 0.4);
 
-  cursor: grab;
+  cursor: ${props => (props.isDragging ? 'grabbing' : 'grab')};
 
   p {
     font-weight: 500;
@@ -33,6 +37,22 @@ export const Container = styled.div`
     border-radius: 2px;
     margin-top: 5px;
   }
+
+  ${props =>
+    props.isDragging &&
+    css`
+      border: 2px dashed rgba(0, 0, 0, 0.2);
+      padding-top: 31px;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+
+      p,
+      img,
+      header {
+        opacity: 0;
+      }
+    `}
 `;
 
 export const Label = styled.span<LabelProps>`

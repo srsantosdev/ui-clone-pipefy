@@ -1,17 +1,16 @@
 import React from 'react';
-
-import { loadLists } from '../../services/api';
+import { useBoard } from '../../hooks/board';
 
 import List from '../List';
 import { Container } from './styles';
 
-const lists = loadLists();
-
 const Board: React.FC = () => {
+  const { lists } = useBoard();
+
   return (
     <Container>
-      {lists.map((list: any) => (
-        <List key={list.title} data={list} />
+      {lists.map((list, index) => (
+        <List key={list.title} index={index} data={list} />
       ))}
     </Container>
   );

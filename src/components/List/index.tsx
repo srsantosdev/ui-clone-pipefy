@@ -1,17 +1,19 @@
 import React from 'react';
 import { MdAdd } from 'react-icons/md';
+import { TypeList } from '../../services/api';
 
 import Card from '../Card';
 
 import { Container } from './styles';
 
 interface ListProps {
-  data: any;
+  data: TypeList;
+  index: number;
 }
 
-const List: React.FC<ListProps> = ({ data }) => {
+const List: React.FC<ListProps> = ({ data, index: listIndex }) => {
   return (
-    <Container done={data.done}>
+    <Container done={!!data.done}>
       <header>
         <h2>{data.title}</h2>
 
@@ -23,8 +25,8 @@ const List: React.FC<ListProps> = ({ data }) => {
       </header>
 
       <ul>
-        {data.cards.map((card: any) => (
-          <Card key={card.id} data={card} />
+        {data.cards.map((card, index) => (
+          <Card key={card.id} data={card} index={index} listIndex={listIndex} />
         ))}
       </ul>
     </Container>
